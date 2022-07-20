@@ -6,8 +6,23 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates
 #RUN echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list
 #RUN apt-get update && apt-get install -y docker-ce --allow-unauthenticated
 
-RUN apt-get update && apt-get install -y openjdk-8-jre curl python python-pip git
-#RUN easy_install jenkins-webapi
+RUN apt-get install -y software-properties-common
+
+
+
+RUN add-apt-repository ppa:openjdk-r/ppa
+
+RUN apt-get update 
+
+RUN apt-get install -y openjdk-11-jdk curl python  python-pip  git
+
+#RUN pip3 install chardet==3.0.4
+
+RUN pip install requests==2.8.1
+RUN pip install pbr
+RUN pip install python-jenkins
+
+#RUN pip3 install jenkins-webapi
 
 # Get docker-compose in the agent container
 RUN curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
