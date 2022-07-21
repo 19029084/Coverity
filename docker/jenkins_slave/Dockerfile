@@ -2,17 +2,21 @@ FROM ubuntu:16.04
 
 # Install Docker CLI in the agent
 RUN apt-get update 
-#&& apt-get install -y apt-transport-https ca-certificates
 RUN apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg |sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-RUN echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+RUN add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu \
+  $(lsb_release -cs) stable"
+
+#RUN echo \
+#  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu \
+#  $(lsb_release -cs) stable" |  tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 
 RUN apt-get update
-RUN apt-get install docker-ce
+
+RUN apt-get install -y docker-ce 
 
 
 
