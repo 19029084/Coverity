@@ -42,9 +42,6 @@ WORKDIR /home/jenkins
 
 VOLUME /opt/coverity
 
-ADD cov-analysis-linux64-2021.06.tar.gz /home/jenkins
-
-RUN tar -xzf /home/jenkins/cov-analysis-linux64-2021.06.tar.gz
 
 ENV JENKINS_URL "http://jenkins"
 ENV JENKINS_SLAVE_ADDRESS ""
