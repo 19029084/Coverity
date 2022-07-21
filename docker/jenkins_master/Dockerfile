@@ -2,7 +2,7 @@
 FROM jenkins/jenkins:latest
 
 # Installing the plugins we need using the in-built install-plugins.sh script
-RUN jenkins-plugin-cli --plugins git matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding
+RUN jenkins-plugin-cli --plugins git matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding groovy-postbuild docker-plugin
 
 # Setting up environment variables for Jenkins admin user
 ENV JENKINS_USER admin
